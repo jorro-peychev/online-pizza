@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="warn">
+
+  <Appenders>
+    <!--TODO web:contextPath should be fixed for the test namespace-->
+    <RandomAccessFile name="File"
+                      fileName="${sys:logs.root}/${web:contextPath}-${date:yyyy-MM-dd}.log"
+                      immediateFlush="false"
+                      append="true">
+      <PatternLayout pattern="%d %p [%t] %X %c{1.} %m%n"/>
+    </RandomAccessFile>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %p [%t] %X %c{1.} %m%n"/>
+    </Console>
+  </Appenders>
+
+  <Loggers>
+
+    <Root level="debug" includeLocation="true">
+      <AppenderRef ref="File"/>
+      <AppenderRef ref="Console"/>
+    </Root>
+
+    <Logger name="codix.dao" level="debug" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="codix.api" level="debug" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="codix.api.be.dossierComponents.search.CaseSearchResource" level="trace" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="codix.api.be.dossierComponents.search.IndividualPartiesSearchResource" level="trace" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="info" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="org.springframework.web.servlet.mvc.method.annotation" level="off" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="org.springframework.web.socket" level="trace" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="org.springframework" level="warn" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="org.springframework.jdbc" level="warn" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="org.springframework.jdbc.datasource.init.ScriptUtils" level="debug" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="com.hazelcast" level="debug" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="org.springframework.session.hazelcast" level="debug" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="trace" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="codix.api.be.common.ext.EditorNotificationsRegistrationImpl" level="trace" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="codix.api.be.common.ext.EditorContextHelperService" level="trace" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+    <Logger name="org.springframework.transaction.support.TransactionTemplate" level="debug" additivity="false">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+
+  </Loggers>
+</Configuration>
