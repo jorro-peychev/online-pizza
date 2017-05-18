@@ -15,7 +15,7 @@ import com.example.demo.application.global.error.handling.repository.ExceptionRe
 import com.example.demo.application.global.error.handling.service.ErrorService;
 
 
-@Service("errorService")
+//@Service("errorService")
 public class ErrorServiceImpl implements ErrorService
 {
 

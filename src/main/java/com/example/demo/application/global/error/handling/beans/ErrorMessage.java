@@ -2,8 +2,10 @@ package com.example.demo.application.global.error.handling.beans;
 
 import javax.persistence.Entity;
 
+import com.example.demo.domain.base.AbstractEntity;
+
 @Entity
-public class ErrorMessage {
+public class ErrorMessage extends AbstractEntity {
 	private String incidentId;
 	private String faultCode;
 	private String faultMessage;

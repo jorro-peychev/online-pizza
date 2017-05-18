@@ -1,6 +1,5 @@
 package com.example.demo.domain.base;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -17,9 +16,7 @@ import org.springframework.hateoas.Identifiable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @MappedSuperclass
-public abstract class AbstractEntity extends AbstractBean implements Identifiable<Long>, Serializable {
-	
-	private static final long serialVersionUID = 6302095480817297732L;
+public abstract class AbstractEntity extends AbstractBean implements Identifiable<Long> {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO) 

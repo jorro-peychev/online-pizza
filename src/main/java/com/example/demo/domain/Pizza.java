@@ -17,7 +17,7 @@ import com.example.demo.domain.base.AbstractEntity;
 @Entity
 public class Pizza extends AbstractEntity {
 	private String name;
-	private List<Ingredient> ingredients;
+//	private List<Ingredient> ingredients;
 
 	public String getName() {
 		return name;
@@ -27,16 +27,16 @@ public class Pizza extends AbstractEntity {
 		this.name = name;
 	}
 
-	@ManyToMany(targetEntity = Ingredient.class, fetch = FetchType.LAZY)
-	@JoinTable(name = "PIZZA_INGIRIDANT_LINKS", joinColumns = @JoinColumn(name = "id"),
-			inverseJoinColumns = @JoinColumn(name = "pizzas"))
-	@LazyCollection(LazyCollectionOption.EXTRA)
-	public List<Ingredient> getIngredients() {
-		return ingredients;
-	}
+//	@ManyToMany(targetEntity = Ingredient.class, fetch = FetchType.LAZY)
+//	@JoinTable(name = "PIZZA_INGIRIDANT_LINKS", joinColumns = @JoinColumn(name = "pizza_id"),
+//			inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+//	@LazyCollection(LazyCollectionOption.EXTRA)
+//	public List<Ingredient> getIngredients() {
+//		return ingredients;
+//	}
 
-	public void setIngredients(List<Ingredient> ingredients) {
-		this.ingredients = ingredients;
-	}
-
+//	public void setIngredients(List<Ingredient> ingredients) {
+//		this.ingredients = ingredients;
+//	}
+	
 }

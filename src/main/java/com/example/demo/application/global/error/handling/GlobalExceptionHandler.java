@@ -29,8 +29,9 @@ import com.example.demo.application.global.error.handling.exceptions.ResourceFor
 import com.example.demo.application.global.error.handling.exceptions.ValidationException;
 import com.example.demo.application.global.error.handling.service.ErrorService;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class GlobalExceptionHandler {
+/*	
 	private Logger log = LogManager.getLogger(getClass());
 
 	private final ResourceBundleMessageSource messageSource;
@@ -126,5 +127,5 @@ public class GlobalExceptionHandler {
 		return errorService.logError(
 				new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.toString(), ex.getMessage()), ex.getStackTrace());
 	}
-
+*/
 }
