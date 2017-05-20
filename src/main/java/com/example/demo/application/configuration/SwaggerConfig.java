@@ -31,8 +31,8 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 		// @formatter:off
 		return new ApiInfoBuilder()
-				.title("SpringBlog from Millky")
-				.description("<a href=\"/post/list\">Spring Boot base Open-source Blog</a> - APIs")
+				.title("SpringBlog from Pizza")
+				.description("<a href=\"/post/list\">Spring Boot base Open-source online pizza</a> - APIs")
 				.contact("origoni@live.com")
 				.version("1.0.0")
 				.build();

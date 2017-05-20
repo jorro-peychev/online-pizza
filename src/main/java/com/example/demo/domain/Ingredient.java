@@ -12,7 +12,7 @@ import com.example.demo.domain.base.AbstractEntity;
 
 public class Ingredient extends AbstractEntity {
 	private String name;
-	private List<Pizza> pizzas;
+//	private List<Pizza> pizzas;
 
 	public String getName() {
 		return name;
@@ -22,14 +22,13 @@ public class Ingredient extends AbstractEntity {
 		this.name = name;
 	}
 
-	@ManyToMany(cascade = { CascadeType.PERSIST,
-			CascadeType.MERGE }, mappedBy = "folders", targetEntity = Pizza.class)
-	@LazyCollection(LazyCollectionOption.EXTRA)
-	public List<Pizza> getPizzas() {
-		return pizzas;
-	}
-
-	public void setPizzas(List<Pizza> pizzas) {
-		this.pizzas = pizzas;
-	}
+//	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "ingredients", targetEntity = Pizza.class)
+//	@LazyCollection(LazyCollectionOption.EXTRA)
+//	public List<Pizza> getPizzas() {
+//		return pizzas;
+//	}
+//
+//	public void setPizzas(List<Pizza> pizzas) {
+//		this.pizzas = pizzas;
+//	}
 }
