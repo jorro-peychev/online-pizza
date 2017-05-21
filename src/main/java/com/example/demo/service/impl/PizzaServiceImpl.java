@@ -29,10 +29,10 @@ public class PizzaServiceImpl implements PizzaService {
 	public Page<Pizza> findAll(Pageable pageable) {
 		return pizzaRepository.findAll(pageable);
 	}
-	
-//	@Override
-//	public List<Pizza> findAll() {
-//		return pizzaRepository.findAll(pageable);
-//	}
+
+	@Override
+	public Pizza findById(Long pizzaId) {
+		return pizzaRepository.findOne(pizzaId);
+	}
 
 }

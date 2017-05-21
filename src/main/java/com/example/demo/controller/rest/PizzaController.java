@@ -16,7 +16,6 @@ import com.example.demo.service.PizzaService;
 public class PizzaController {
 
 	private static final Logger log = LoggerFactory.getLogger(PizzaController.class);
-	
 	private PizzaService pizzaService;
 
 	@Autowired
@@ -24,12 +23,7 @@ public class PizzaController {
 		super();
 		this.pizzaService = pizzaService;
 	}
-	
-	@GetMapping("/pizza/{pizzaName}")
-	public Pizza searchPizza(@PathVariable String pizzaName) {
-		return pizzaService.findByName(pizzaName);
-	}
-	
+
 	@GetMapping("/pizzas")
 	public Page<Pizza> searchPizza(Pageable pageable) {
 		log.warn("warning");
@@ -37,7 +31,7 @@ public class PizzaController {
 	}
 	
 	@GetMapping("/pizza/{pizzaId}")
-	public Page<Pizza> getPizzaDetails(Pageable pageable) {
-		return pizzaService.findAll(pageable);
+	public Pizza getPizzaDetails(@PathVariable("pizzaId") Pizza pizza ) {
+		return pizza;
 	}
 }

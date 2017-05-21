@@ -17,10 +17,10 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import com.example.demo.application.global.error.handling.beans.ErrorMessage;
@@ -29,7 +29,7 @@ import com.example.demo.application.global.error.handling.exceptions.ResourceFor
 import com.example.demo.application.global.error.handling.exceptions.ValidationException;
 import com.example.demo.application.global.error.handling.service.ErrorService;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 	
 	private Logger log = LogManager.getLogger(getClass());
@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND) // 404
 	public ErrorMessage handleConflict(EmptyResultDataAccessException e) {
-		log.info("Info: ", e);
+		log.error("================>>>ERROR: ", e);
 		return errorService.logError(new ErrorMessage(HttpStatus.NOT_FOUND.toString(), e.getMessage()),
 				e.getStackTrace());
 	}
