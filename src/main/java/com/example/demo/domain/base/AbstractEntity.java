@@ -1,5 +1,7 @@
 package com.example.demo.domain.base;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
@@ -89,11 +91,11 @@ public abstract class AbstractEntity extends AbstractBean implements Identifiabl
 		this.updatedBy = updatedBy;
 	}
 
-	public LocalDateTime  getUpdatedDate() {
+	public LocalDateTime getUpdatedDate() {
 		return updatedDate;
 	}
 
-	public void setUpdatedDate(LocalDateTime  updatedDate) {
+	public void setUpdatedDate(LocalDateTime updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 
@@ -110,16 +112,34 @@ public abstract class AbstractEntity extends AbstractBean implements Identifiabl
 		this.updatedDate = LocalDateTime.now();
 	}
 
+	public String toString() {
+		StringBuilder dump = new StringBuilder();
+		Field[] fields = this.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			String key = field.getName();
+			String methodName = "get" + key.substring(0, 1).toUpperCase() + key.substring(1);
+			try {
+				Method method = this.getClass().getMethod(methodName, new Class[] {});
+				Object thisValue = method.invoke(this);
+				System.out.println("field name: " + key + " value: " + thisValue);
+				dump.append("field name: " + key + " value: " + thisValue).append("\n");
+			} catch (Exception e) {
+				// e.printStackTrace();
+			}
+		}
+		return dump.toString();
+	}
+
 	@Override
 	public boolean equals(Object other) {
-		if (this == other){
+		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof AbstractEntity)){
+		if (!(other instanceof AbstractEntity)) {
 			return false;
 		}
 		final AbstractEntity entity = (AbstractEntity) other;
-		if (!entity.getId().equals(getId())){
+		if (!entity.getId().equals(getId())) {
 			return false;
 		}
 		return true;
