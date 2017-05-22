@@ -3,13 +3,12 @@
 <Configuration status="warn">
 
   <Appenders>
-    <!--
+    
     <RandomAccessFile name="File"
-                      fileName="${sys:logs.root}/${web:contextPath}-${date:yyyy-MM-dd}.log"
-                      immediateFlush="false"
-                      append="true">
+                      fileName="test-${date:yyyy-MM-dd}.log"
+                      >
       <PatternLayout pattern="%d %p [%t] %X %c{1.} %m%n"/>
-    </RandomAccessFile>-->
+    </RandomAccessFile>
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d %p [%t] %X %c{1.} %m%n"/>
     </Console>

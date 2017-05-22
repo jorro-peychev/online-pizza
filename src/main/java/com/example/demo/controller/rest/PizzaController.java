@@ -25,7 +25,7 @@ public class PizzaController {
 	}
 
 	@GetMapping("/pizzas")
-	public Page<Pizza> searchPizza(Pageable pageable) {
+	public Page<Pizza> getAllPizzas(Pageable pageable) {
 		log.warn("warning");
 		return pizzaService.findAll(pageable);
 	}

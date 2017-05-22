@@ -1,15 +1,10 @@
 package com.example.demo.domain;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToMany;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import javax.persistence.Entity;
 
 import com.example.demo.domain.base.AbstractEntity;
 
+@Entity
 public class Ingredient extends AbstractEntity {
 	private String name;
 //	private List<Pizza> pizzas;
