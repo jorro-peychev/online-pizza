@@ -1,23 +1,31 @@
 package com.example.demo.domain;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.validation.constraints.Digits;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.example.demo.domain.base.AbstractEntity;
 
 
 @Entity
 public class Pizza extends AbstractEntity {
+	
+	@NotEmpty(message = "Name is required.")
+	@Length(max = 30)
 	private String name;
-//	private List<Ingredient> ingredients;
+	
+	@Digits(integer = 10, fraction = 3)
+	private BigDecimal basePrice;
+	
+	@Length(max = 50)
+	// TODO show it only to admin user
+	private String recipe;
+	
+	//private List<Ingredient> ingredients;
 
 	public String getName() {
 		return name;
@@ -25,6 +33,14 @@ public class Pizza extends AbstractEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public BigDecimal getBasePrice() {
+		return basePrice;
+	}
+
+	public void setBasePrice(BigDecimal basePrice) {
+		this.basePrice = basePrice;
 	}
 
 //	@ManyToMany(targetEntity = Ingredient.class, fetch = FetchType.LAZY)
