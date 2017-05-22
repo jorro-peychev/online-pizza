@@ -1,7 +1,5 @@
 package com.example.demo.domain.base;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
@@ -15,6 +13,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.Version;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.hateoas.Identifiable;
 
@@ -112,22 +112,13 @@ public abstract class AbstractEntity extends AbstractBean implements Identifiabl
 		this.updatedDate = LocalDateTime.now();
 	}
 
+	@Override
 	public String toString() {
-		StringBuilder dump = new StringBuilder();
-		Field[] fields = this.getClass().getDeclaredFields();
-		for (Field field : fields) {
-			String key = field.getName();
-			String methodName = "get" + key.substring(0, 1).toUpperCase() + key.substring(1);
-			try {
-				Method method = this.getClass().getMethod(methodName, new Class[] {});
-				Object thisValue = method.invoke(this);
-				System.out.println("field name: " + key + " value: " + thisValue);
-				dump.append("field name: " + key + " value: " + thisValue).append("\n");
-			} catch (Exception e) {
-				// e.printStackTrace();
-			}
-		}
-		return dump.toString();
+		return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+				// important to not log passwords
+				.setExcludeFieldNames("password", "newPassword", "currentPassword", "oldPassword", "access_token",
+						"accessToken")
+				.build();
 	}
 
 	@Override
