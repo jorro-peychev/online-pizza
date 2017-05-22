@@ -13,6 +13,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.Version;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.ReadOnlyProperty;
@@ -135,5 +136,15 @@ public abstract class AbstractEntity extends AbstractBean implements Identifiabl
 		}
 		return true;
 	}
+	
+//	@Override
+//    public boolean equals(Object o) {
+//        return EqualsBuilder.reflectionEquals(this, o);
+//    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
 
 }
