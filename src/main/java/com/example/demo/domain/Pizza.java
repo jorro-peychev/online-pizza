@@ -12,8 +12,9 @@ import com.example.demo.domain.base.AbstractEntity;
 
 
 @Entity
-public class Pizza extends AbstractEntity {
-	
+public class Pizza extends AbstractEntity<Long> {
+	private static final long serialVersionUID = 1L;
+
 	@NotEmpty(message = "Name is required.")
 	@Length(max = 30)
 	private String name;

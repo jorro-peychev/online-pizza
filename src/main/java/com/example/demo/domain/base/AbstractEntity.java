@@ -1,5 +1,6 @@
 package com.example.demo.domain.base;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
@@ -13,16 +14,18 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.Version;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.ReadOnlyProperty;
-import org.springframework.hateoas.Identifiable;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @MappedSuperclass
-public abstract class AbstractEntity extends AbstractBean implements Identifiable<Long> {
+public abstract class AbstractEntity<ID extends Serializable> extends AbstractPersistable<Long>/* implements Identifiable<Long>*/ {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,9 +58,10 @@ public abstract class AbstractEntity extends AbstractBean implements Identifiabl
 	@Column(nullable = false)
 	private Long version;
 
+		
 	@Override
-	public Long getId() {
-		return id;
+	public void setId(Long id) {
+		super.setId(id);
 	}
 
 	public EntityState getElementState() {
@@ -122,25 +126,25 @@ public abstract class AbstractEntity extends AbstractBean implements Identifiabl
 				.build();
 	}
 
-	@Override
-	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof AbstractEntity)) {
-			return false;
-		}
-		final AbstractEntity entity = (AbstractEntity) other;
-		if (!entity.getId().equals(getId())) {
-			return false;
-		}
-		return true;
-	}
-	
 //	@Override
-//    public boolean equals(Object o) {
-//        return EqualsBuilder.reflectionEquals(this, o);
-//    }
+//	public boolean equals(Object other) {
+//		if (this == other) {
+//			return true;
+//		}
+//		if (!(other instanceof AbstractEntity)) {
+//			return false;
+//		}
+//		final AbstractEntity entity = (AbstractEntity) other;
+//		if (!entity.getId().equals(getId())) {
+//			return false;
+//		}
+//		return true;
+//	}
+	
+	@Override
+    public boolean equals(Object o) {
+        return EqualsBuilder.reflectionEquals(this, o);
+    }
 
     @Override
     public int hashCode() {

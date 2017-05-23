@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.domain.Pizza;
 import com.example.demo.repository.PizzaRepository;
 import com.example.demo.service.PizzaService;
+import com.example.demo.service.base.AbstractService;
 
 @Service("pizzaService")
-public class PizzaServiceImpl implements PizzaService {
+public class PizzaServiceImpl extends AbstractService<Pizza, Long> implements PizzaService {
 	
 	private PizzaRepository pizzaRepository;
 
